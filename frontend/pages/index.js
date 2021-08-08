@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import Head from 'next/head';
+import Post from '../components/Post';
 
 export default function Home({ posts }) {
  return (
@@ -12,7 +13,7 @@ export default function Home({ posts }) {
 
    <div className='posts'>
     {posts.map((post, index) => (
-     <h3>{post.fronmatter.title}</h3>
+     <Post post={post} />
     ))}
    </div>
   </div>
@@ -34,11 +35,11 @@ export async function getStaticProps() {
    'utf-8'
   );
 
-  const { data: fronmatter } = matter(markdownWithMeta);
+  const { data: frontmatter } = matter(markdownWithMeta);
 
   return {
    slug,
-   fronmatter,
+   frontmatter,
   };
  });
 
