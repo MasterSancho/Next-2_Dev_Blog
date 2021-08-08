@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import matter from 'gray-matter';
 import Head from 'next/head';
 
 export default function Home({ posts }) {
@@ -29,10 +30,11 @@ export async function getStaticProps() {
    'utf-8'
   );
 
-  console.log(markdownWithMeta);
+  const { data: fronmatter } = matter(markdownWithMeta);
 
   return {
    slug,
+   fronmatter,
   };
  });
 
