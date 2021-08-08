@@ -10,7 +10,11 @@ export default function Home({ posts }) {
     <title>Dev Blog</title>
    </Head>
 
-   <h2>Hello</h2>
+   <div className='posts'>
+    {posts.map((post, index) => (
+     <h3>{post.fronmatter.title}</h3>
+    ))}
+   </div>
   </div>
  );
 }
@@ -38,11 +42,9 @@ export async function getStaticProps() {
   };
  });
 
- console.log(posts);
-
  return {
   props: {
-   posts: 'The Posts',
+   posts,
   },
  };
 }
